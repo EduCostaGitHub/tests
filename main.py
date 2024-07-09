@@ -9,6 +9,6 @@ from calculator import sum
 
 try:
     print(sum('15',5))
-except TypeError as error:
-    print('Invalid Parameters')
-    print(error)
+except AssertionError as error:
+    print(f'Invalid Parameters: {error}')
+    
