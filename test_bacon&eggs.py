@@ -44,7 +44,29 @@ class TestBaconEggs(unittest.TestCase):
                     output,
                     msg=f'{input} did not returned {output}'
                 )
-            
+
+    def test_bacon_eggs_output_if__multiple_of_3(self):
+        inputs = (3, 12 , 21)
+        output = 'Bacon'
+
+        for input in inputs:
+            with self.subTest(input=input,output=output):
+                self.assertEqual(
+                    bacon_with_eggs(input),
+                    output,
+                    msg=f'{input} did not returned {output}'
+                )            
+    def test_bacon_eggs_output_if__multiple_of_5(self):
+        inputs = (5,10,20)
+        output = 'eggs'
+
+        for input in inputs:
+            with self.subTest(input=input,output=output):
+                self.assertEqual(
+                    bacon_with_eggs(input),
+                    output,
+                    msg=f'{input} did not returned {output}'
+                )            
 
 unittest.main(verbosity=2)
 

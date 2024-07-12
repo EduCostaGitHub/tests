@@ -16,5 +16,11 @@ def bacon_with_eggs(num):
 
     if num %3  == 0 and num % 5==0:
         return 'Bacon & eggs'
-    else:
-        return 'starving'
+    
+    if num %3  == 0 :
+        return 'Bacon'
+    
+    if num %5  == 0 :
+        return 'eggs'
+
+    return 'starving'
