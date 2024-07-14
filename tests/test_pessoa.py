@@ -10,6 +10,21 @@ class Pessoa
             OK
             404    
 """
+try:
+    import sys
+    import os
+
+    sys.path.append(
+        os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                '../'
+            )
+        )
+    )
+except:
+    raise
+
 import unittest
 from unittest.mock import patch
 from pessoa import Pessoa
@@ -45,9 +60,30 @@ class TestPessoa(unittest.TestCase):
 
     def test_pessoa_data_connection_OK(self):
         with patch('requests.get') as fake_request:
-            fake_request.return_value.ok=True
+            fake_request.return_value.ok = True
 
-        self.assertEqual(self.p1.getData(),'CONNECTED')
+            self.assertEqual(self.p1.getData(),'CONNECTED')
+            self.assertTrue(self.p1.data)
+
+    def test_pessoa_data_connection_fail(self):
+        with patch('requests.get') as fake_request:
+            fake_request.return_value.ok = False
+
+            self.assertEqual(self.p1.getData(),'ERROR 404')
+            self.assertFalse(self.p1.data)
+
+    def test_pessoa_data_connection_fail_and_success(self):
+        with patch('requests.get') as fake_request:
+            fake_request.return_value.ok = True
+
+            self.assertEqual(self.p1.getData(),'CONNECTED')
+            self.assertTrue(self.p1.data)
+
+            fake_request.return_value.ok = False
+
+            self.assertEqual(self.p1.getData(),'ERROR 404')
+            self.assertFalse(self.p1.data)
+            
 
 
 

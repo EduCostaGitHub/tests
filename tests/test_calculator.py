@@ -1,3 +1,18 @@
+try:
+    import sys
+    import os
+
+    sys.path.append(
+        os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                '../'
+            )
+        )
+    )
+except:
+    raise
+
 import unittest
 from calculator import sum
 
@@ -43,4 +58,5 @@ class TestCalculator(unittest.TestCase):
     
                 
 
-unittest.main(verbosity=2)
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
